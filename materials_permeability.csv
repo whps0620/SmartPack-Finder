@@ -1,11 +1,11 @@
-Base Material,Type,Secondary Material,WVTR_Updated_Num,OTR_Updated_Num,WVTR_Updated_Unit,OTR_Updated_Unit
-fish gelatin,individual,None,2731.3977600000003,,g/m2day,
+Base Material,Type,Secondary Material,WVTR,OTR,WVTR unit,OTR unit
+fish gelatin,individual,none,2731.3977600000003,,g/m2day,
 fish gelatin,nanocomposite,montmorillonite,709.11288,,g/m2day,
 fish gelatin,nanocomposite,montmorillonite,980.5017600000001,,g/m2day,
 fish gelatin,nanocomposite,montmorillonite,1199.36376,,g/m2day,
 fish gelatin,nanocomposite,montmorillonite,1365.6988800000001,,g/m2day,
 fish gelatin,nanocomposite,montmorillonite,1085.5555200000001,,g/m2day,
-fish gelatin,individual,None,,4.027999999999997,,cm3/m2day
+fish gelatin,individual,none,,4.027999999999997,,cm3/m2day
 fish gelatin,nanocomposite,montmorillonite,,1.1440000000000043,,cm3/m2day
 fish gelatin,nanocomposite,montmorillonite,,1.9640000000000037,,cm3/m2day
 fish gelatin,nanocomposite,montmorillonite,,1.7130000000000016,,cm3/m2day
@@ -16,160 +16,160 @@ fish gelatin,nanocomposite,montmorillonite,,2.0730000000000026,,cm3/m2day
 fish gelatin,nanocomposite,montmorillonite,1076.80104,,g/m2day,
 fish gelatin,nanocomposite,montmorillonite,1146.8368799999998,,g/m2day,
 fish gelatin,nanocomposite,montmorillonite,1208.11824,,g/m2day,
-polylactic acid,individual,None,2203.925034965035,,g/m2day,
-polylactic acid,nanocomposite,NaMMT,2259.2206451612906,,g/m2day,
-polylactic acid,nanocomposite,OMMT,1879.1181818181817,,g/m2day,
-polylactic acid,nanocomposite,OMMT,1197.1048751486328,,g/m2day,
-polylactic acid,individual,None,1904.0994,,g/m2day,
-polylactic acid,individual,None,4463.4438512035,,g/m2day,
+polylactic acid,individual,none,2203.925034965035,,g/m2day,
+polylactic acid,nanocomposite,nammt,2259.2206451612906,,g/m2day,
+polylactic acid,nanocomposite,ommt,1879.1181818181817,,g/m2day,
+polylactic acid,nanocomposite,ommt,1197.1048751486328,,g/m2day,
+polylactic acid,individual,none,1904.0994,,g/m2day,
+polylactic acid,individual,none,4463.4438512035,,g/m2day,
 fruit,coated,galactomannans,,,,
 fruit,coated,galactomannans,,,,
 fruit,coated,galactomannans,,,,
 fruit,coated,galactomannans,182385.0,,g/m2day,
 fruit,coated,galactomannans,188804.95199999996,,g/m2day,
 fruit,coated,galactomannans,180342.28799999997,,g/m2day,
-locust bean gum,individual,None,52526.880000000005,,g/m2day,
-locust bean gum,individual,None,93381.12,,g/m2day,
-corn starch,individual,None,253879.91999999995,,g/m2day,
+locust bean gum,individual,none,52526.880000000005,,g/m2day,
+locust bean gum,individual,none,93381.12,,g/m2day,
+corn starch,individual,none,253879.91999999995,,g/m2day,
 fruit,coated,galactomannans,,2021.678376487054,,cm3/m2day
 fruit,coated,galactomannans,,878.1027291812456,,cm3/m2day
 fruit,coated,galactomannans,,837.2607417774669,,cm3/m2day
-polypropylene,individual,None,,1552.0624707659733,,cm3/m2day
-polypropylene,nanocomposite,NaMMT,,309.19039771923997,,cm3/m2day
-PHBV,individual,None,525.2688,,g/m2day,
-PHBV,blend,wheat straw fibres,1820.9318400000002,,g/m2day,
-PHBV,blend,olive mills,182.093184,,g/m2day,
+polypropylene,individual,none,,1552.0624707659733,,cm3/m2day
+polypropylene,nanocomposite,nammt,,309.19039771923997,,cm3/m2day
+phbv,individual,none,525.2688,,g/m2day,
+phbv,blend,wheat straw fibres,1820.9318400000002,,g/m2day,
+phbv,blend,olive mills,182.093184,,g/m2day,
 polyethylene,coated,chitosan,,,,
-polyvinyl chloride,individual,None,62.156808,,g/m2day,
-polypropylene,individual,None,56.904120000000006,,g/m2day,
-chitosan,individual,None,5348.98728,,g/m2day,
-chitosan,individual,None,130.6168416,,g/m2day,
-methylcellulose,individual,None,4377.24,,g/m2day,
-oat starch,individual,None,1925.9856000000002,,g/m2day,
-oat starch,individual,None,367.68816,,g/m2day,
-wheat gluten,individual,None,15320.34,,g/m2day,
-amylose,individual,None,114713.87586206896,,g/m2day,
-polyethylene,individual,None,67701.31199999999,,g/m2day,
+polyvinyl chloride,individual,none,62.156808,,g/m2day,
+polypropylene,individual,none,56.904120000000006,,g/m2day,
+chitosan,individual,none,5348.98728,,g/m2day,
+chitosan,individual,none,130.6168416,,g/m2day,
+methylcellulose,individual,none,4377.24,,g/m2day,
+oat starch,individual,none,1925.9856000000002,,g/m2day,
+oat starch,individual,none,367.68816,,g/m2day,
+wheat gluten,individual,none,15320.34,,g/m2day,
+amylose,individual,none,114713.87586206896,,g/m2day,
+polyethylene,individual,none,67701.31199999999,,g/m2day,
 polyethylene,coated,chitosan,,7.572104464660601,,cm3/m2day
-chitosan,individual,None,,3.1489172288313508e+19,,cm3/m2day
-chitosan,individual,None,,8.086713505948218e+16,,cm3/m2day
-chitosan,individual,None,,0.6371350034989505,,cm3/m2day
-chitosan,individual,None,,26.53912341497551,,cm3/m2day
-chitosan,individual,None,,5.3666371448565435,,cm3/m2day
-chitosan,individual,None,,91.97411353393983,,cm3/m2day
-chitosan,individual,None,,,,
-chitosan,individual,None,,,,
-chitosan,individual,None,,,,
-chitosan,individual,None,,,,
-polyethylene,individual,None,43.7724,,g/m2day,
-polyethylene,individual,None,150.187968,,g/m2day,
-polyethylene,individual,None,107.97192,,g/m2day,
-polyethylene,individual,None,89.87932799999999,,g/m2day,
-chitosan,individual,None,225.07768080000002,,g/m2day,
-chitosan,individual,None,19259.856,,g/m2day,
-chitosan,individual,None,36427.39128,,g/m2day,
-chitosan,individual,None,228.84210720000002,,g/m2day,
-chitosan,individual,None,16677.2844,,g/m2day,
-chitosan,individual,None,47361.736800000006,,g/m2day,
+chitosan,individual,none,,3.1489172288313508e+19,,cm3/m2day
+chitosan,individual,none,,8.086713505948218e+16,,cm3/m2day
+chitosan,individual,none,,0.6371350034989505,,cm3/m2day
+chitosan,individual,none,,26.53912341497551,,cm3/m2day
+chitosan,individual,none,,5.3666371448565435,,cm3/m2day
+chitosan,individual,none,,91.97411353393983,,cm3/m2day
+chitosan,individual,none,,,,
+chitosan,individual,none,,,,
+chitosan,individual,none,,,,
+chitosan,individual,none,,,,
+polyethylene,individual,none,43.7724,,g/m2day,
+polyethylene,individual,none,150.187968,,g/m2day,
+polyethylene,individual,none,107.97192,,g/m2day,
+polyethylene,individual,none,89.87932799999999,,g/m2day,
+chitosan,individual,none,225.07768080000002,,g/m2day,
+chitosan,individual,none,19259.856,,g/m2day,
+chitosan,individual,none,36427.39128,,g/m2day,
+chitosan,individual,none,228.84210720000002,,g/m2day,
+chitosan,individual,none,16677.2844,,g/m2day,
+chitosan,individual,none,47361.736800000006,,g/m2day,
 polyethylene,coated,chitosan,137.9706048,,g/m2day,
 polyethylene,coated,chitosan,116.7847632,,g/m2day,
 polyethylene,coated,chitosan,216.5858352,,g/m2day,
-chitosan,individual,None,,540.9521231630512,,cm3/m2day
-polyurethane,individual,None,,,,
+chitosan,individual,none,,540.9521231630512,,cm3/m2day
+polyurethane,individual,none,,,,
 polyurethane,nanocomposite,silica,,,,
-polyurethane,individual,None,,10676.995904651925,,cm3/m2day
+polyurethane,individual,none,,10676.995904651925,,cm3/m2day
 polyurethane,nanocomposite,silica,,5049.575553922084,,cm3/m2day
-SPI,individual,None,,,,
-SPI,bilayer,corn zein,,,,
-LDPE,individual,None,,,,
-LDPE,individual,None,,,,
-HDPE,individual,None,,,,
-SPI,individual,None,71002.68507333909,,g/m2day,
-SPI,bilayer,corn zein,46639.58777292576,,g/m2day,
-LDPE,individual,None,114.43764705882353,,g/m2day,
+spi,individual,none,,,,
+spi,bilayer,corn zein,,,,
+ldpe,individual,none,,,,
+ldpe,individual,none,,,,
+hdpe,individual,none,,,,
+spi,individual,none,71002.68507333909,,g/m2day,
+spi,bilayer,corn zein,46639.58777292576,,g/m2day,
+ldpe,individual,none,114.43764705882353,,g/m2day,
 poly(n-butyl methacrylate),nanocomposite,montmorillonite,,,,
 poly(n-butyl methacrylate),nanocomposite,montmorillonite,,,,
 poly(n-butyl methacrylate),nanocomposite,montmorillonite,,,,
 poly(n-butyl methacrylate),nanocomposite,montmorillonite,,,,
-soluble soybean polysaccharide,individual,None,10573.592727272728,,g/m2day,
-soluble soybean polysaccharide,individual,None,15906.027042253523,,g/m2day,
-soluble soybean polysaccharide,individual,None,24464.574246575343,,g/m2day,
-soluble soybean polysaccharide,individual,None,35450.24,,g/m2day,
-psyllium hydrocolloid,individual,None,20310.3936,,g/m2day,
-psyllium hydrocolloid,individual,None,22469.832000000002,,g/m2day,
-psyllium hydrocolloid,individual,None,22858.92,,g/m2day,
-cellophane,individual,None,10213.56,,g/m2day,
+soluble soybean polysaccharide,individual,none,10573.592727272728,,g/m2day,
+soluble soybean polysaccharide,individual,none,15906.027042253523,,g/m2day,
+soluble soybean polysaccharide,individual,none,24464.574246575343,,g/m2day,
+soluble soybean polysaccharide,individual,none,35450.24,,g/m2day,
+psyllium hydrocolloid,individual,none,20310.3936,,g/m2day,
+psyllium hydrocolloid,individual,none,22469.832000000002,,g/m2day,
+psyllium hydrocolloid,individual,none,22858.92,,g/m2day,
+cellophane,individual,none,10213.56,,g/m2day,
 greaseproof paper,coated,chitosan,,457.14285714285774,,cm3/m2day
 greaseproof paper,coated,chitosan,,514.2857142857134,,cm3/m2day
 greaseproof paper,coated,chitosan,,200.00000000000006,,cm3/m2day
-chitosan,indiviudal,None,,1.6000000000000023e-05,,cm3/m2day
+chitosan,indiviudal,none,,1.6000000000000023e-05,,cm3/m2day
 greaseproof paper,coated,chitosan,,,,
 greaseproof paper,coated,chitosan,,,,
-paperboard,coated,PLA,3605.871886120768,,g/m2day,
-paperboard,coated,PLA,3125.08896797147,,g/m2day,
-paperboard,coated,"PLA, Al2O3",48.07829181494556,,g/m2day,
-paperboard,coated,"PLA, Al2O3",,2.31481481481481e-10,,
-paperboard,coated,PLA,,4.62962962962963e-08,,
-polylactic acid,individual,None,,8.125e-08,,
-paperboard,coated,PLA,,4.86111111111111e-08,,
-paperboard,coated,"PLA, Al2O3",,2.3148148148148102e-09,,
-paperboard,coated,"PLA, Al2O3",,1.38888888888889e-09,,
-polylactic acid,individual,None,,,,
-polyethylene terephthalate,individual,None,,,,
-polylactic acid,individual,None,,3851643782.447912,,cm3/m2day
-polyethylene terephthalate,individual,None,,46686591.3024,,cm3/m2day
+paperboard,coated,pla,3605.871886120768,,g/m2day,
+paperboard,coated,pla,3125.08896797147,,g/m2day,
+paperboard,coated,"pla, al2o3",48.07829181494556,,g/m2day,
+paperboard,coated,"pla, al2o3",,2.31481481481481e-10,,cm3/m2Pas
+paperboard,coated,pla,,4.62962962962963e-08,,cm3/m2Pas
+polylactic acid,individual,none,,8.125e-08,,cm3/m2Pas
+paperboard,coated,pla,,4.86111111111111e-08,,cm3/m2Pas
+paperboard,coated,"pla, al2o3",,2.3148148148148102e-09,,cm3/m2Pas
+paperboard,coated,"pla, al2o3",,1.38888888888889e-09,,cm3/m2Pas
+polylactic acid,individual,none,,,,
+polyethylene terephthalate,individual,none,,,,
+polylactic acid,individual,none,,3851643782.447912,,cm3/m2day
+polyethylene terephthalate,individual,none,,46686591.3024,,cm3/m2day
 paper,coated,wheat gluten,,,,
 paper,coated,wheat gluten,,,,
 paper,coated,wheat gluten,,,,
-wheat gluten,individual,None,,,,
+wheat gluten,individual,none,,,,
 paper,coated,wheat gluten,,,,
 paper,coated,wheat gluten,,,,
 paper,coated,wheat gluten,,,,
 paper,coated,wheat gluten,,,,
 paper,coated,wheat gluten,,,,
-wheat gluten,individual,None,,,,
+wheat gluten,individual,none,,,,
 paper,coated,wheat gluten,,,,
-starch,individual,None,,0.02626344,,cm3/m2day
-starch,individual,None,,0.250378128,,cm3/m2day
-starch,individual,None,,0.75288528,,cm3/m2day
-starch,individual,None,,0.05427777599999999,,cm3/m2day
-EVOH,individual,None,,0.021010752,,cm3/m2day
-starch,individual,None,,0.25387992000000004,,cm3/m2day
-starch,individual,None,,0.064783152,,cm3/m2day
-starch,individual,None,,1750.896,,cm3/m2day
-starch,individual,None,,163.63874016000003,,cm3/m2day
-methylcellulose,individual,None,47592.53672727273,,g/m2day,
-methylcellulose,individual,None,26469.42776470588,,g/m2day,
-methylcellulose,individual,None,22761.647999999997,,g/m2day,
-methylcellulose,individual,None,17609.973230769232,,g/m2day,
-methylcellulose,individual,None,19150.425,,g/m2day,
-methylcellulose,individual,None,42313.32,,g/m2day,
-methylcellulose,individual,None,40319.244000000006,,g/m2day,
-methylcellulose,individual,None,36331.092,,g/m2day,
-methylcellulose,individual,None,38365.221176470586,,g/m2day,
-methylcellulose,individual,None,38136.7035,,g/m2day,
-methylcellulose,individual,None,41336.370782608705,,g/m2day,
-methylcellulose,individual,None,34914.92611764706,,g/m2day,
-methylcellulose,individual,None,26469.42776470588,,g/m2day,
-methylcellulose,individual,None,21834.70305882353,,g/m2day,
-methylcellulose,individual,None,13540.262400000001,,g/m2day,
-methylcellulose,individual,None,40544.1855,,g/m2day,
-methylcellulose,individual,None,40051.74600000001,,g/m2day,
-methylcellulose,individual,None,34348.45976470588,,g/m2day,
-LDPE,individual,None,76.163976,,g/m2day,
-HDPE,individual,None,19.259856,,g/m2day,
-carrot puree,blend,CMC,,17.74533096,,cm3/m2day
-carrot puree,blend,CMC,,15.82809984,,cm3/m2day
-carrot puree,blend,CMC,,13.009157280000002,,cm3/m2day
-carrot puree,blend,CMC,,12.03741,,cm3/m2day
-carrot puree,blend,CMC,,11.442105360000001,,cm3/m2day
-carrot puree,blend,CMC,,11.00438136,,cm3/m2day
-carrot puree,blend,CMC,580509.5688,,g/m2day,
-carrot puree,blend,CMC,427743.89280000003,,g/m2day,
-carrot puree,blend,CMC,248977.4112,,g/m2day,
-carrot puree,blend,CMC,202053.3984,,g/m2day,
-carrot puree,blend,CMC,185770.06559999997,,g/m2day,
-carrot puree,blend,CMC,154166.3928,,g/m2day,
+starch,individual,none,,0.02626344,,cm3/m2day
+starch,individual,none,,0.250378128,,cm3/m2day
+starch,individual,none,,0.75288528,,cm3/m2day
+starch,individual,none,,0.05427777599999999,,cm3/m2day
+evoh,individual,none,,0.021010752,,cm3/m2day
+starch,individual,none,,0.25387992000000004,,cm3/m2day
+starch,individual,none,,0.064783152,,cm3/m2day
+starch,individual,none,,1750.896,,cm3/m2day
+starch,individual,none,,163.63874016000003,,cm3/m2day
+methylcellulose,individual,none,47592.53672727273,,g/m2day,
+methylcellulose,individual,none,26469.42776470588,,g/m2day,
+methylcellulose,individual,none,22761.647999999997,,g/m2day,
+methylcellulose,individual,none,17609.973230769232,,g/m2day,
+methylcellulose,individual,none,19150.425,,g/m2day,
+methylcellulose,individual,none,42313.32,,g/m2day,
+methylcellulose,individual,none,40319.244000000006,,g/m2day,
+methylcellulose,individual,none,36331.092,,g/m2day,
+methylcellulose,individual,none,38365.221176470586,,g/m2day,
+methylcellulose,individual,none,38136.7035,,g/m2day,
+methylcellulose,individual,none,41336.370782608705,,g/m2day,
+methylcellulose,individual,none,34914.92611764706,,g/m2day,
+methylcellulose,individual,none,26469.42776470588,,g/m2day,
+methylcellulose,individual,none,21834.70305882353,,g/m2day,
+methylcellulose,individual,none,13540.262400000001,,g/m2day,
+methylcellulose,individual,none,40544.1855,,g/m2day,
+methylcellulose,individual,none,40051.74600000001,,g/m2day,
+methylcellulose,individual,none,34348.45976470588,,g/m2day,
+ldpe,individual,none,76.163976,,g/m2day,
+hdpe,individual,none,19.259856,,g/m2day,
+carrot puree,blend,cmc,,17.74533096,,cm3/m2day
+carrot puree,blend,cmc,,15.82809984,,cm3/m2day
+carrot puree,blend,cmc,,13.009157280000002,,cm3/m2day
+carrot puree,blend,cmc,,12.03741,,cm3/m2day
+carrot puree,blend,cmc,,11.442105360000001,,cm3/m2day
+carrot puree,blend,cmc,,11.00438136,,cm3/m2day
+carrot puree,blend,cmc,580509.5688,,g/m2day,
+carrot puree,blend,cmc,427743.89280000003,,g/m2day,
+carrot puree,blend,cmc,248977.4112,,g/m2day,
+carrot puree,blend,cmc,202053.3984,,g/m2day,
+carrot puree,blend,cmc,185770.06559999997,,g/m2day,
+carrot puree,blend,cmc,154166.3928,,g/m2day,
 carrot puree,blend,gelatin,,12.08993688,,cm3/m2day
 carrot puree,blend,gelatin,,11.35456056,,cm3/m2day
 carrot puree,blend,gelatin,,12.230008559999998,,cm3/m2day
@@ -182,116 +182,116 @@ carrot puree,blend,gelatin,188746.5888,,g/m2day,
 carrot puree,blend,gelatin,237333.9528,,g/m2day,
 carrot puree,blend,gelatin,303692.9112,,g/m2day,
 carrot puree,blend,gelatin,335121.49439999997,,g/m2day,
-carrot puree,blend,CMC,,11.89733832,,cm3/m2day
-carrot puree,blend,CMC,,12.01990104,,cm3/m2day
-carrot puree,blend,CMC,,12.04616448,,cm3/m2day
-carrot puree,blend,CMC,,12.238763039999998,,cm3/m2day
-carrot puree,blend,CMC,,12.475134,,cm3/m2day
-carrot puree,blend,CMC,,12.72025944,,cm3/m2day
-carrot puree,blend,CMC,286446.5856,,g/m2day,
-carrot puree,blend,CMC,276028.75440000003,,g/m2day,
-carrot puree,blend,CMC,235407.9672,,g/m2day,
-carrot puree,blend,CMC,213784.40160000004,,g/m2day,
-carrot puree,blend,CMC,200127.41280000002,,g/m2day,
-carrot puree,blend,CMC,190935.2088,,g/m2day,
-polypropylene,individual,None,10359.467999999972,,g/m2day,
-polypropylene,individual,None,,0.0231481481481481,,
-polypropylene,coated,corn–zein,,0.0053935185185185,,
-polypropylene,coated,corn–zein,,0.009386574074074,,
-polypropylene,coated,corn–zein,,0.0099305555555555,,
-polypropylene,coated,corn–zein,,0.007048611111111,,
-polypropylene,coated,corn–zein,,0.0056481481481481,,
+carrot puree,blend,cmc,,11.89733832,,cm3/m2day
+carrot puree,blend,cmc,,12.01990104,,cm3/m2day
+carrot puree,blend,cmc,,12.04616448,,cm3/m2day
+carrot puree,blend,cmc,,12.238763039999998,,cm3/m2day
+carrot puree,blend,cmc,,12.475134,,cm3/m2day
+carrot puree,blend,cmc,,12.72025944,,cm3/m2day
+carrot puree,blend,cmc,286446.5856,,g/m2day,
+carrot puree,blend,cmc,276028.75440000003,,g/m2day,
+carrot puree,blend,cmc,235407.9672,,g/m2day,
+carrot puree,blend,cmc,213784.40160000004,,g/m2day,
+carrot puree,blend,cmc,200127.41280000002,,g/m2day,
+carrot puree,blend,cmc,190935.2088,,g/m2day,
+polypropylene,individual,none,10359.467999999972,,g/m2day,
+polypropylene,individual,none,,0.0231481481481481,,cm3/m2s
+polypropylene,coated,corn–zein,,0.0053935185185185,,cm3/m2s
+polypropylene,coated,corn–zein,,0.009386574074074,,cm3/m2s
+polypropylene,coated,corn–zein,,0.0099305555555555,,cm3/m2s
+polypropylene,coated,corn–zein,,0.007048611111111,,cm3/m2s
+polypropylene,coated,corn–zein,,0.0056481481481481,,cm3/m2s
 polypropylene,coated,corn–zein,55080.27000000007,,g/m2day,
 polypropylene,coated,corn–zein,240748.2,,g/m2day,
 polypropylene,coated,corn–zein,34653.14999999993,,g/m2day,
 polypropylene,coated,corn–zein,78425.54999999992,,g/m2day,
-chitosan,individual,None,13395.164999999977,,g/m2day,
-chitosan,individual,None,7943.879999999996,,g/m2day,
-chitosan,individual,None,9119.250000000031,,g/m2day,
-chitosan,individual,None,16515.974999999966,,g/m2day,
-chitosan,individual,None,19251.749999999964,,g/m2day,
-chitosan,individual,None,1000.0000000000001,,g/m2day,
-chitosan,individual,None,759.9999999999995,,g/m2day,
+chitosan,individual,none,13395.164999999977,,g/m2day,
+chitosan,individual,none,7943.879999999996,,g/m2day,
+chitosan,individual,none,9119.250000000031,,g/m2day,
+chitosan,individual,none,16515.974999999966,,g/m2day,
+chitosan,individual,none,19251.749999999964,,g/m2day,
+chitosan,individual,none,1000.0000000000001,,g/m2day,
+chitosan,individual,none,759.9999999999995,,g/m2day,
 chitosan,blend,stearic acid,13699.140000000047,,g/m2day,
 chitosan,blend,palmitic acid,14611.064999999988,,g/m2day,
-chitosan,individual,None,,3.7037037037037e-06,,
-chitosan,blend,palmitic acid,,7.39583333333333e-08,,
-chitosan,blend,palmitic acid,,2.70833333333333e-08,,
-polypropylene,individual,None,,12022877.968500033,,cm3/m2day
-polypropylene,nanocomposite,OMMT,,9591284.671500003,,cm3/m2day
-polypropylene,nanocomposite,OMMT,,8240399.506500033,,cm3/m2day
-polypropylene,nanocomposite,OMMT,,7159691.374500027,,cm3/m2day
-polypropylene,nanocomposite,OMMT,,6484248.792000001,,cm3/m2day
-polylactic acid,individual,None,,,,
-polylactic acid,individual,None,,,,
-polylactic acid,individual,None,,,,
-polylactic acid,individual,None,,,,
-polylactic acid,individual,None,,,,
-polylactic acid,individual,None,,328.3731910368,,cm3/m2day
-polylactic acid,nanocomposite,OMMT,,275.833529496,,cm3/m2day
-polylactic acid,nanocomposite,OMMT,,249.53332068,,cm3/m2day
-polylactic acid,individual,None,433.5552,,g/m2day,
-polylactic acid,nanocomposite,Ag,416.88,,g/m2day,
-polylactic acid,nanocomposite,"CNC, Ag",275.1408,,g/m2day,
-polylactic acid,nanocomposite,"sCNC, Ag",179.25839999999997,,g/m2day,
-polylactic acid,nanocomposite,"CNC, Ag",229.28400000000002,,g/m2day,
-polylactic acid,nanocomposite,"sCNC, Ag",179.25839999999997,,g/m2day,
-polylactic acid,individual,None,,3.5300926e-05,,
-polylactic acid,nanocomposite,Ag,,2.7662037e-05,,
-polylactic acid,nanocomposite,"CNC, Ag",,1.9097222e-05,,
-polylactic acid,nanocomposite,"sCNC, Ag",,1.6435185e-05,,
-polylactic acid,nanocomposite,"CNC, Ag",,2.0601852e-05,,
-polylactic acid,nanocomposite,"sCNC, Ag",,1.4583333e-05,,
-SPI,individual,None,107329.66617429837,,g/m2day,
-SPI,individual,None,118149.89268292682,,g/m2day,
-SPI,individual,None,108473.87755102041,,g/m2day,
-SPI,individual,None,106275.93323216995,,g/m2day,
-polyethylene terephthalate,nanocomposite,OMMT,,3.02061983092128,,cm3/m2day
-polyethylene terephthalate,nanocomposite,OMMT,,2.23498631740608,,cm3/m2day
-polyethylene terephthalate,nanocomposite,OMMT,,1.8633164798304003,,cm3/m2day
-polyethylene terephthalate,nanocomposite,OMMT,,1.5198750778176,,cm3/m2day
-agar,individual,None,305321.53388429753,,g/m2day,
+chitosan,individual,none,,3.7037037037037e-06,,cm3cm/m2Pas
+chitosan,blend,palmitic acid,,7.39583333333333e-08,,cm3cm/m2Pas
+chitosan,blend,palmitic acid,,2.70833333333333e-08,,cm3cm/m2Pas
+polypropylene,individual,none,,12022877.968500033,,cm3/m2day
+polypropylene,nanocomposite,ommt,,9591284.671500003,,cm3/m2day
+polypropylene,nanocomposite,ommt,,8240399.506500033,,cm3/m2day
+polypropylene,nanocomposite,ommt,,7159691.374500027,,cm3/m2day
+polypropylene,nanocomposite,ommt,,6484248.792000001,,cm3/m2day
+polylactic acid,individual,none,,,,
+polylactic acid,individual,none,,,,
+polylactic acid,individual,none,,,,
+polylactic acid,individual,none,,,,
+polylactic acid,individual,none,,,,
+polylactic acid,individual,none,,328.3731910368,,cm3/m2day
+polylactic acid,nanocomposite,ommt,,275.833529496,,cm3/m2day
+polylactic acid,nanocomposite,ommt,,249.53332068,,cm3/m2day
+polylactic acid,individual,none,433.5552,,g/m2day,
+polylactic acid,nanocomposite,ag,416.88,,g/m2day,
+polylactic acid,nanocomposite,"cnc, ag",275.1408,,g/m2day,
+polylactic acid,nanocomposite,"scnc, ag",179.25839999999997,,g/m2day,
+polylactic acid,nanocomposite,"cnc, ag",229.28400000000002,,g/m2day,
+polylactic acid,nanocomposite,"scnc, ag",179.25839999999997,,g/m2day,
+polylactic acid,individual,none,,3.5300926e-05,,cm3cm/m2s
+polylactic acid,nanocomposite,ag,,2.7662037e-05,,cm3cm/m2s
+polylactic acid,nanocomposite,"cnc, ag",,1.9097222e-05,,cm3cm/m2s
+polylactic acid,nanocomposite,"scnc, ag",,1.6435185e-05,,cm3cm/m2s
+polylactic acid,nanocomposite,"cnc, ag",,2.0601852e-05,,cm3cm/m2s
+polylactic acid,nanocomposite,"scnc, ag",,1.4583333e-05,,cm3cm/m2s
+spi,individual,none,107329.66617429837,,g/m2day,
+spi,individual,none,118149.89268292682,,g/m2day,
+spi,individual,none,108473.87755102041,,g/m2day,
+spi,individual,none,106275.93323216995,,g/m2day,
+polyethylene terephthalate,nanocomposite,ommt,,3.02061983092128,,cm3/m2day
+polyethylene terephthalate,nanocomposite,ommt,,2.23498631740608,,cm3/m2day
+polyethylene terephthalate,nanocomposite,ommt,,1.8633164798304003,,cm3/m2day
+polyethylene terephthalate,nanocomposite,ommt,,1.5198750778176,,cm3/m2day
+agar,individual,none,305321.53388429753,,g/m2day,
 agar,blend,lignin,286008.7164179105,,g/m2day,
 agar,blend,lignin,270801.42716857616,,g/m2day,
 agar,blend,lignin,271373.54816112085,,g/m2day,
 agar,blend,lignin,231736.23529411765,,g/m2day,
-methylcellulose,individual,None,,6.89009967576,,cm3/m2day
-denatured whey protein isolate,individual,None,,597.8174383944,,cm3/m2day
-whey protein isolate,individual,None,,790.3349319096,,cm3/m2day
-polylactic acid,individual,None,5.2034722e-06,,,
-polylactic acid,nanocomposite,OMMT,4.58611109e-06,,,
-polylactic acid,nanocomposite,OMMT,4.08634257e-06,,,
-polylactic acid,nanocomposite,OMMT,3.70416665e-06,,,
-polylactic acid,nanocomposite,OMMT,3.35138887e-06,,,
-polylactic acid,nanocomposite,OMMT,3.14560184e-06,,,
-polylactic acid,nanocomposite,OMMT,2.96921295e-06,,,
-polyurethane,individual,None,,9692.960255999998,,cm3/m2day
-polyurethane,nanocomposite,OMMT,,8011.224648,,cm3/m2day
-polyurethane,nanocomposite,OMMT,,6958.936152,,cm3/m2day
-polyurethane,nanocomposite,OMMT,,6922.1673359999995,,cm3/m2day
-polyurethane,nanocomposite,OMMT,,7328.3752079999995,,cm3/m2day
-polyurethane,nanocomposite,OMMT,,6192.043704,,cm3/m2day
-polyurethane,nanocomposite,OMMT,,5681.65752,,cm3/m2day
-polysulfone,individual,None,,,,
+methylcellulose,individual,none,,6.89009967576,,cm3/m2day
+denatured whey protein isolate,individual,none,,597.8174383944,,cm3/m2day
+whey protein isolate,individual,none,,790.3349319096,,cm3/m2day
+polylactic acid,individual,none,5.2034722e-06,,g/m2s,
+polylactic acid,nanocomposite,ommt,4.58611109e-06,,g/m2s,
+polylactic acid,nanocomposite,ommt,4.08634257e-06,,g/m2s,
+polylactic acid,nanocomposite,ommt,3.70416665e-06,,g/m2s,
+polylactic acid,nanocomposite,ommt,3.35138887e-06,,g/m2s,
+polylactic acid,nanocomposite,ommt,3.14560184e-06,,g/m2s,
+polylactic acid,nanocomposite,ommt,2.96921295e-06,,g/m2s,
+polyurethane,individual,none,,9692.960255999998,,cm3/m2day
+polyurethane,nanocomposite,ommt,,8011.224648,,cm3/m2day
+polyurethane,nanocomposite,ommt,,6958.936152,,cm3/m2day
+polyurethane,nanocomposite,ommt,,6922.1673359999995,,cm3/m2day
+polyurethane,nanocomposite,ommt,,7328.3752079999995,,cm3/m2day
+polyurethane,nanocomposite,ommt,,6192.043704,,cm3/m2day
+polyurethane,nanocomposite,ommt,,5681.65752,,cm3/m2day
+polysulfone,individual,none,,,,
 polysulfone,nanocomposite,silica,,,,
 polysulfone,nanocomposite,silica,,,,
 polysulfone,nanocomposite,silica,,,,
-polysulfone,individual,None,,6435.057563423999,,cm3/m2day
+polysulfone,individual,none,,6435.057563423999,,cm3/m2day
 polysulfone,nanocomposite,silica,,9192.939376319999,,cm3/m2day
 polysulfone,nanocomposite,silica,,11162.863711439999,,cm3/m2day
 polysulfone,nanocomposite,silica,,22325.709913919996,,cm3/m2day
-microfibrillated cellulose,individual,None,,40529.740608,,cm3/m2day
-polyethylene terephthalate,individual,None,,10132435.151999999,,cm3/m2day
-polyethylene terephthalate,individual,None,,50662175.76,,cm3/m2day
-polypropylene,individual,None,,506621757.6,,cm3/m2day
-polypropylene,individual,None,,1013243515.2,,cm3/m2day
-polyvinylidene chloride,individual,None,,0.10132435152,,cm3/m2day
-polyvinylidene chloride,individual,None,,3.0397305456,,cm3/m2day
-EVOH,individual,None,,22595.33038896,,cm3/m2day
-polylactic acid,individual,None,,171.2381540688,,cm3/m2day
-microfibrillated cellulose,individual,None,15907940697.6,,g/m2day,
-polyethylene terephthalate,individual,None,13172.244487920001,,g/m2day,
-polypropylene,individual,None,499532250.1296961,,g/m2day,
-polyvinylidene chloride,individual,None,708261751.9454399,,g/m2day,
-EVOH,individual,None,96258781.77552,,g/m2day,
-polylactic acid,individual,None,391114499.773032,,g/m2day,
+microfibrillated cellulose,individual,none,,40529.740608,,cm3/m2day
+polyethylene terephthalate,individual,none,,10132435.151999999,,cm3/m2day
+polyethylene terephthalate,individual,none,,50662175.76,,cm3/m2day
+polypropylene,individual,none,,506621757.6,,cm3/m2day
+polypropylene,individual,none,,1013243515.2,,cm3/m2day
+polyvinylidene chloride,individual,none,,0.10132435152,,cm3/m2day
+polyvinylidene chloride,individual,none,,3.0397305456,,cm3/m2day
+evoh,individual,none,,22595.33038896,,cm3/m2day
+polylactic acid,individual,none,,171.2381540688,,cm3/m2day
+microfibrillated cellulose,individual,none,15907940697.6,,g/m2day,
+polyethylene terephthalate,individual,none,13172.244487920001,,g/m2day,
+polypropylene,individual,none,499532250.1296961,,g/m2day,
+polyvinylidene chloride,individual,none,708261751.9454399,,g/m2day,
+evoh,individual,none,96258781.77552,,g/m2day,
+polylactic acid,individual,none,391114499.773032,,g/m2day,

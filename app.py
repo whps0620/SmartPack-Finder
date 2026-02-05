@@ -2,118 +2,123 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
-from sklearn.cluster import DBSCAN
+from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 
-# --- PAGE CONFIG ---
-st.set_page_config(page_title="SmartPack Finder", layout="wide")
+st.set_page_config(page_title="Sustainable Packaging Selector", layout="wide")
+st.title("🌱 Sustainable Packaging Recommendation Tool")
 
-# --- DATA LOADING ---
-@st.cache_data
-def load_all_data():
-    # 1. Load Materials
-    df_mat = pd.read_csv('materials.csv') # Using your specific file name
-    df_mat.columns = df_mat.columns.str.strip()
-    
-    # 2. Load Food Requirements
-    df_food = pd.read_csv('food_requirements.csv')
-    df_food.columns = df_food.columns.str.strip()
-    
-    # Pre-processing Materials
-    df_mat['OTR_Updated_Num'] = pd.to_numeric(df_mat['OTR_Updated_Num'], errors='coerce')
-    df_mat['WVTR_Updated_Num'] = pd.to_numeric(df_mat['WVTR_Updated_Num'], errors='coerce')
-    df_mat = df_mat.dropna(subset=['OTR_Updated_Num', 'WVTR_Updated_Num'])
-    
-    # Classification for sustainability
-    conventional = ['polypropylene', 'polyethylene', 'ldpe', 'hdpe', 'pet', 'evoh', 'pp', 'pe']
-    df_mat['Material_Class'] = df_mat['Base Material'].apply(
-        lambda x: 'Conventional' if str(x).lower().strip() in conventional else 'Sustainable'
-    )
-    
-    return df_mat, df_food
-
-df_mat, df_food = load_all_data()
-
-# --- CLUSTERING ---
-def get_clusters(data):
-    # Log transform for better clustering on wide-range permeability data
-    features = np.log10(data[['OTR_Updated_Num', 'WVTR_Updated_Num']] + 1e-5)
-    scaler = StandardScaler()
-    scaled = scaler.fit_transform(features)
-    db = DBSCAN(eps=0.5, min_samples=3).fit(scaled)
-    return db.labels_
-
-df_mat['Cluster'] = get_clusters(df_mat)
-
-# --- UI LAYOUT ---
-st.title("SmartPack Finder: Material Permeability Map")
-st.markdown("Comparing **Material Performance** against **Food Requirements**")
-
-col1, col2 = st.columns([3, 1])
-
-with col1:
-    fig = go.Figure()
-
-    # 1. Draw Food Requirement Blocks (The Targets)
-    for _, row in df_food.iterrows():
-        # Create a rectangle for each food category
-        fig.add_trace(go.Scatter(
-            x=[row['min_wvtr'], row['max_wvtr'], row['max_wvtr'], row['min_wvtr'], row['min_wvtr']],
-            y=[row['min_otr'], row['min_otr'], row['max_otr'], row['max_otr'], row['min_otr']],
-            fill="toself",
-            name=f"REQ: {row['Food Category']}",
-            opacity=0.2,
-            line=dict(width=1),
-            legendgroup="Food Requirements"
-        ))
-
-    # 2. Plot Materials by Cluster
-    for cluster in sorted(df_mat['Cluster'].unique()):
-        c_data = df_mat[df_mat['Cluster'] == cluster]
-        cluster_name = f"Cluster {cluster}" if cluster != -1 else "Noise/Variable"
+def load_and_clean_data():
+    try:
+        m_df = pd.read_csv('materials_permeability.csv')
+        f_df = pd.read_csv('food_requirements.csv')
         
+        m_df.columns = m_df.columns.str.strip()
+        f_df.columns = f_df.columns.str.strip()
+        
+        # Merge OTR and WVTR rows into unique material profiles
+        group_cols = ['Base Material', 'Type', 'Secondary Material']
+        unit_cols = [c for c in ['OTR_unit', 'WVTR_unit'] if c in m_df.columns]
+        
+        m_df_merged = m_df.groupby(group_cols).agg({
+            'OTR': 'max',
+            'WVTR': 'max',
+            **{c: 'first' for c in unit_cols}
+        }).reset_index()
+
+        # Remove profiles missing either value for clustering math
+        m_df_merged = m_df_merged.dropna(subset=['OTR', 'WVTR'])
+        
+        return m_df_merged, f_df
+    except Exception as e:
+        st.error(f"Error loading data: {e}")
+        return None, None
+
+m_df, f_df = load_and_clean_data()
+
+if m_df is not None and not m_df.empty:
+    OTR_UNIT = m_df['OTR_unit'].iloc[0] if 'OTR_unit' in m_df.columns else "cc/m²·day"
+    WVTR_UNIT = m_df['WVTR_unit'].iloc[0] if 'WVTR_unit' in m_df.columns else "g/m²·day"
+
+    # --- Sidebar Configuration ---
+    st.sidebar.header("📋 Requirements")
+    input_mode = st.sidebar.radio("Input Method", ["Select Food Category", "Manual Entry"])
+    
+    # K-Means Parameter
+    st.sidebar.markdown("---")
+    st.sidebar.header("🤖 Clustering Settings")
+    n_clusters = st.sidebar.slider("Number of Performance Tiers (K)", 2, 8, 3)
+
+    req_otr_min, req_otr_max = 0.0, 100.0
+    req_wvtr_min, req_wvtr_max = 0.0, 10.0
+    selected_name = "Custom Selection"
+
+    if input_mode == "Select Food Category":
+        cat_cols = [c for c in f_df.columns if c.lower() == 'food_category']
+        if cat_cols:
+            selected_name = st.sidebar.selectbox("Choose Category", f_df[cat_cols[0]].unique())
+            food_row = f_df[f_df[cat_cols[0]] == selected_name].iloc[0]
+            req_otr_min, req_otr_max = food_row['Min_OTR'], food_row['Max_OTR']
+            req_wvtr_min, req_wvtr_max = food_row['Min_WVTR'], food_row['Max_WVTR']
+    else:
+        c1, c2 = st.sidebar.columns(2)
+        req_otr_min = c1.number_input(f"Min OTR", value=0.0)
+        req_otr_max = c2.number_input(f"Max OTR", value=100.0)
+        req_wvtr_min = c1.number_input(f"Min WVTR", value=0.0)
+        req_wvtr_max = c2.number_input(f"Max WVTR", value=10.0)
+
+    # --- K-Means Clustering ---
+    scaler = StandardScaler()
+    m_scaled = scaler.fit_transform(m_df[['OTR', 'WVTR']])
+    
+    # Initialize and fit K-Means
+    kmeans = KMeans(n_clusters=n_clusters, random_state=42, n_init=10)
+    m_df['Cluster_ID'] = kmeans.fit_predict(m_scaled)
+    m_df['Cluster_Label'] = m_df['Cluster_ID'].apply(lambda x: f"Tier {x+1}")
+
+    # --- Visualization (Log Scale) ---
+    fig = go.Figure()
+    
+    # Requirement Block
+    fig.add_shape(type="rect", x0=req_wvtr_min, x1=req_wvtr_max, y0=req_otr_min, y1=req_otr_max,
+                  fillcolor="rgba(0, 255, 0, 0.15)", line=dict(color="Green", width=2))
+
+    # Materials
+    for cluster in sorted(m_df['Cluster_Label'].unique()):
+        data = m_df[m_df['Cluster_Label'] == cluster]
         fig.add_trace(go.Scatter(
-            x=c_data['WVTR_Updated_Num'],
-            y=c_data['OTR_Updated_Num'],
-            mode='markers',
-            name=cluster_name,
-            text=c_data['Base Material'] + " (" + c_data['Type'] + ")",
-            marker=dict(size=10, opacity=0.8),
-            hovertemplate="<b>%{text}</b><br>OTR: %{y} cm³/m²·day<br>WVTR: %{x} g/m²·day<extra></extra>"
+            x=data['WVTR'], y=data['OTR'], mode='markers', name=cluster,
+            marker=dict(size=12, line=dict(width=1, color='white')),
+            customdata=data[['Base Material', 'Secondary Material', 'Type']],
+            hovertemplate="<b>%{customdata[0]}</b><br>Sec: %{customdata[1]}<br>Type: %{customdata[2]}<br>WVTR: %{x}<br>OTR: %{y}<extra></extra>"
         ))
 
-    # Units and Formatting
-    fig.update_xaxes(type="log", title="WVTR (g/m²·day)", gridcolor='lightgray')
-    fig.update_yaxes(type="log", title="OTR (cm³/m²·day)", gridcolor='lightgray')
-    fig.update_layout(height=700, template="plotly_white", legend_title="Categories")
+    # UPDATE: Set axis types to 'log'
+    fig.update_xaxes(type="log", exponentformat="power")
+    fig.update_yaxes(type="log", exponentformat="power")
+
+    fig.update_layout(
+        title=f"Log-Scale Permeability: {selected_name}",
+        xaxis_title=f"WVTR ({WVTR_UNIT})", 
+        yaxis_title=f"OTR ({OTR_UNIT})", 
+        template="plotly_white", 
+        height=650
+    )
     st.plotly_chart(fig, use_container_width=True)
 
-with col2:
-    st.subheader("Filter & Analysis")
-    show_sustainable = st.toggle("Show only Sustainable Materials", value=False)
-    
-    target_food = st.selectbox("Highlight Food Needs", df_food['Food Category'].unique())
-    food_row = df_food[df_food['Food Category'] == target_food].iloc[0]
-    
-    st.info(f"**Target for {target_food}:**\n"
-            f"- OTR: {food_row['min_otr']} to {food_row['max_otr']} cm³/m²·day\n"
-            f"- WVTR: {food_row['min_wvtr']} to {food_row['max_wvtr']} g/m²·day")
-    
-    # Filtered Results Table
-    display_df = df_mat.copy()
-    if show_sustainable:
-        display_df = display_df[display_df['Material_Class'] == 'Sustainable']
-    
-    # Matching logic
-    matches = display_df[
-        (display_df['OTR_Updated_Num'] >= food_row['min_otr']) & 
-        (display_df['OTR_Updated_Num'] <= food_row['max_otr']) &
-        (display_df['WVTR_Updated_Num'] >= food_row['min_wvtr']) & 
-        (display_df['WVTR_Updated_Num'] <= food_row['max_wvtr'])
+
+    # --- Recommendation Table ---
+    matches = m_df[
+        (m_df['OTR'] >= req_otr_min) & (m_df['OTR'] <= req_otr_max) &
+        (m_df['WVTR'] >= req_wvtr_min) & (m_df['WVTR'] <= req_wvtr_max)
     ]
     
-    st.write(f"### Suitable { 'Sustainable' if show_sustainable else '' } Materials:")
+    st.subheader(f"📋 Selection Results: {selected_name}")
     if not matches.empty:
-        st.dataframe(matches[['Base Material', 'Secondary Material', 'Type']], hide_index=True)
+        st.success(f"Found {len(matches)} matching materials.")
+        st.table(matches[['Base Material', 'Secondary Material', 'Type', 'OTR', 'WVTR', 'Cluster_Label']])
     else:
-        st.warning("No exact matches found for this category.")
+        st.error("No exact matches found. Consider materials in the Tier closest to the green box.")
+
+else:
+    st.info("Check your CSV files. We need both OTR and WVTR values for the same material types to perform clustering.")
