@@ -1,0 +1,9 @@
+Food_Category,Min_OTR,Max_OTR,Min_WVTR,Max_WVTR,Description
+"Fruit, vegetable, and salads",10000.0,1000000000.0,100.0,10000.0,"High Respiration"
+"Bakery",10.0,1000.0,5.0,100.0,"Moderate Barrier"
+"Cheese",1.0,100.0,1.0,100.0,"Lipid Oxidation Prevention"
+"Meat",0.1,50.0,0.1,20.0,"High O2 Barrier"
+"Peanuts",0.1,10.0,0.1,10.0,"Crunchiness & Oil Stability"
+"Seafoods, meat",0.1,50.0,0.1,10.0,"Microbial Control"
+"Coffee",0.01,1.0,0.01,1.0,"Aroma Preservation"
+"Baby food",0.01,1.0,0.01,1.0,"Nutrient Protection"

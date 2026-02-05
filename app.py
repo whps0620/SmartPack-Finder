@@ -4,136 +4,141 @@ import numpy as np
 import plotly.graph_objects as go
 from sklearn.cluster import DBSCAN
 from sklearn.preprocessing import StandardScaler
+import os
 
 # --- PAGE CONFIG ---
-st.set_page_config(page_title="SmartPack Finder", layout="wide")
+st.set_page_config(page_title="SmartPack Finder", layout="wide", page_icon="📦")
 
-# --- DATA LOADING & CLEANING ---
+# --- DATA LOADING ---
 @st.cache_data
-def load_and_preprocess_data():
-    # Load your semi-processed dataset
-    df = pd.read_csv('data/semi-processed_2.csv')
+def load_data():
+    path = 'data/semi-processed_2.csv'
+    if not os.path.exists(path):
+        st.error(f"File not found at {path}. Please check your directory structure.")
+        return pd.DataFrame()
     
-    # Cleaning based on your EDA notebook
-    df['Type'] = df['Type'].replace('Individual', 'individual')
-    df['Secondary Material'] = df['Secondary Material'].fillna('None')
-    df['thickness_Updated_Num'] = df['thickness_Updated_Num'].fillna(0.0001) # Default 100um
+    df = pd.read_csv(path)
+    # Clean column names and convert to numeric
+    df.columns = df.columns.str.strip()
+    df['OTR_Updated_Num'] = pd.to_numeric(df['OTR_Updated_Num'], errors='coerce')
+    df['WVTR_Updated_Num'] = pd.to_numeric(df['WVTR_Updated_Num'], errors='coerce')
     
-    # Conventional vs Sustainable classification
-    conventional_list = [
-        'polypropylene', 'polyethylene', 'polyvinyl chloride', 'LDPE', 
-        'HDPE', 'polyethylene terephthalate', 'EVOH', 'polysulfone'
-    ]
-    df['Material_Class'] = df['Base Material'].apply(
-        lambda x: 'conventional' if str(x).lower() in conventional_list else 'sustainable'
-    )
-    
-    # Convert values to log scale for clustering (as seen in your FE notebook)
-    # Adding small constant to avoid log(0)
+    # Feature Engineering
+    df['thickness_Updated_Num'] = df['thickness_Updated_Num'].fillna(0.0001)
+    # Add small epsilon to avoid log(0)
     df['log_OTR'] = np.log10(df['OTR_Updated_Num'] + 1e-5)
     df['log_WVTR'] = np.log10(df['WVTR_Updated_Num'] + 1e-5)
     
+    # Material Classification (Case-insensitive)
+    conventional = ['polypropylene', 'polyethylene', 'ldpe', 'hdpe', 'pet', 'evoh']
+    df['Material_Class'] = df['Base Material'].apply(
+        lambda x: 'conventional' if str(x).lower().strip() in conventional else 'sustainable'
+    )
     return df
 
-df = load_and_preprocess_data()
-
-# --- SIDEBAR: USER INPUTS ---
-st.sidebar.header("Step 1: Food Requirements")
-
-food_category = st.sidebar.selectbox(
-    "Food Category",
-    ["Fruit, vegetable, and salads", "Bakery", "Cheese", "Meat", "Peanuts", "Seafoods, meat", "Coffee", "Baby food"]
-)
-
-storage_condition = st.sidebar.selectbox(
-    "Storage Condition",
-    ["Ambient", "Refrigerated", "High Humidity", "Frozen"]
-)
-
-# Preset thresholds based on category (Scientific logic from your thesis)
-presets = {
-    "Fruit, vegetable, and salads": {"otr": 10**8, "wvtr": 10**2},
-    "Cheese": {"otr": 10**1, "wvtr": 10**1},
-    "Coffee": {"otr": 10**0, "wvtr": 10**0},
-    "Meat": {"otr": 10**1, "wvtr": 10**1},
-}
-default = presets.get(food_category, {"otr": 100.0, "wvtr": 50.0})
-
-target_otr = st.sidebar.number_input("Max OTR (cm³/m²·day)", value=float(default['otr']))
-target_wvtr = st.sidebar.number_input("Max WVTR (g/m²·day)", value=float(default['wvtr']))
-
-# --- ML CLUSTERING (DBSCAN) ---
-# Using parameters from your thesis (eps=1.17, min_samples=4)
-def apply_dbscan(data):
-    features = data[['log_OTR', 'log_WVTR']].dropna()
+# --- CLUSTERING LOGIC ---
+def apply_clustering(df):
+    features = df[['log_OTR', 'log_WVTR']].dropna()
+    if features.empty:
+        return df.assign(Cluster=-1)
+    
     scaler = StandardScaler()
-    scaled_features = scaler.fit_transform(features)
+    scaled = scaler.fit_transform(features)
+    # Parameters from your thesis
+    db = DBSCAN(eps=1.17, min_samples=4).fit(scaled)
     
-    dbscan = DBSCAN(eps=1.17, min_samples=4)
-    labels = dbscan.fit_predict(scaled_features)
+    features['Cluster'] = db.labels_
+    # Join back to main dataframe
+    return df.join(features['Cluster'], how='left').fillna({'Cluster': -1})
+
+# --- FOOD REQUIREMENTS ---
+food_reqs = {
+    "Fruit, vegetable, and salads": {"min_otr": 1e4, "max_otr": 1e9, "min_wvtr": 1e2, "max_wvtr": 1e4, "color": "#2ecc71"},
+    "Bakery": {"min_otr": 1e1, "max_otr": 1e3, "min_wvtr": 5, "max_wvtr": 1e2, "color": "#f1c40f"},
+    "Cheese": {"min_otr": 1, "max_otr": 1e2, "min_wvtr": 1, "max_wvtr": 1e2, "color": "#f39c12"},
+    "Meat": {"min_otr": 0.1, "max_otr": 50, "min_wvtr": 0.1, "max_wvtr": 20, "color": "#e74c3c"},
+    "Peanuts": {"min_otr": 0.1, "max_otr": 10, "min_wvtr": 0.1, "max_wvtr": 10, "color": "#a0522d"},
+    "Seafoods, meat": {"min_otr": 0.1, "max_otr": 50, "min_wvtr": 0.1, "max_wvtr": 10, "color": "#3498db"},
+    "Coffee": {"min_otr": 0.01, "max_otr": 1, "min_wvtr": 0.01, "max_wvtr": 1, "color": "#34495e"},
+    "Baby food": {"min_otr": 0.01, "max_otr": 1, "min_wvtr": 0.01, "max_wvtr": 1, "color": "#9b59b6"},
+}
+
+# --- APP LAYOUT ---
+df_raw = load_data()
+
+st.sidebar.header("Navigation & Settings")
+if not df_raw.empty:
+    df_plot = apply_clustering(df_raw)
     
-    features['Cluster'] = labels
-    return features
+    selected_food = st.sidebar.selectbox("Select Target Food Category", list(food_reqs.keys()))
+    req = food_reqs[selected_food]
 
-# --- MAIN UI ---
-st.title("SmartPack Finder 🎈")
-st.markdown("Matching food requirements with sustainable packaging via DBSCAN clustering.")
+    # Sidebar PDF Downloads
+    st.sidebar.markdown("---")
+    st.sidebar.subheader("Research Files")
+    for pdf_file in ["Thesis_Final.pdf", "The concept poster.pdf"]:
+        if os.path.exists(pdf_file):
+            with open(pdf_file, "rb") as f:
+                st.sidebar.download_button(label=f"Download {pdf_file}", data=f, file_name=pdf_file)
 
-col1, col2 = st.columns([2, 1])
-
-with col1:
-    st.subheader("Permeability Mapping (Thesis Page 18)")
+    # --- MAIN VISUALIZATION ---
+    st.title("SmartPack Finder: Integrated Decision Tool")
     
-    # Run clustering
-    clustered_features = apply_dbscan(df)
-    plot_df = df.join(clustered_features['Cluster'], how='inner')
+    col1, col2 = st.columns([3, 1])
 
-    # Create Plotly Scatter (Log-Log Scale)
-    fig = go.Figure()
+    with col1:
+        fig = go.Figure()
 
-    # Add Material Clusters
-    for cluster in plot_df['Cluster'].unique():
-        c_df = plot_df[plot_df['Cluster'] == cluster]
-        name = f"Cluster {cluster}" if cluster != -1 else "Noise"
-        fig.add_trace(go.Scatter(
-            x=c_df['WVTR_Updated_Num'], y=c_df['OTR_Updated_Num'],
-            mode='markers', name=name,
-            text=c_df['Base Material'],
-            marker=dict(size=8)
-        ))
+        # 1. Add ALL Food Requirement Zones (Visible in legend)
+        for name, r in food_reqs.items():
+            is_selected = (name == selected_food)
+            fig.add_trace(go.Scatter(
+                x=[r['min_wvtr'], r['max_wvtr'], r['max_wvtr'], r['min_wvtr'], r['min_wvtr']],
+                y=[r['min_otr'], r['min_otr'], r['max_otr'], r['max_otr'], r['min_otr']],
+                fill="toself",
+                name=name,
+                line=dict(color=r['color'], width=2 if is_selected else 1),
+                opacity=0.4 if is_selected else 0.1,
+                legendgroup="Requirements"
+            ))
 
-    # Add Food Need Zone (Highlight user selection)
-    fig.add_shape(type="rect",
-        x0=0.1, y0=0.1, x1=target_wvtr, y1=target_otr,
-        line=dict(color="Red", width=2),
-        fillcolor="LightSalmon", opacity=0.3
-    )
+        # 2. Add Material Clusters
+        for cluster in df_plot['Cluster'].unique():
+            c_data = df_plot[df_plot['Cluster'] == cluster]
+            name = f"Cluster {int(cluster)}" if cluster != -1 else "Noise/Outliers"
+            fig.add_trace(go.Scatter(
+                x=c_data['WVTR_Updated_Num'], 
+                y=c_data['OTR_Updated_Num'],
+                mode='markers', 
+                name=name,
+                text=c_data['Base Material'],
+                marker=dict(size=8, opacity=0.8),
+                legendgroup="Materials"
+            ))
 
-    fig.update_xaxes(type="log", title="WVTR (g/m²·day)")
-    fig.update_yaxes(type="log", title="OTR (cm³/m²·day)")
-    fig.update_layout(height=600, template="plotly_white")
-    st.plotly_chart(fig, use_container_width=True)
+        fig.update_xaxes(type="log", title="WVTR (g/m²·day)", range=[-2, 7])
+        fig.update_yaxes(type="log", title="OTR (cm³/m²·day)", range=[-2, 10])
+        fig.update_layout(height=700, template="plotly_white", legend_title="Legend")
+        st.plotly_chart(fig, use_container_width=True)
 
-with col2:
-    st.subheader("Matching Results")
-    
-    # Filtering materials based on inputs
-    matches = df[
-        (df['OTR_Updated_Num'] <= target_otr) & 
-        (df['WVTR_Updated_Num'] <= target_wvtr) &
-        (df['Material_Class'] == 'sustainable')
-    ].sort_values('OTR_Updated_Num').head(10)
+    with col2:
+        st.subheader("Results")
+        # Filter logic
+        matches = df_plot[
+            (df_plot['OTR_Updated_Num'] >= req['min_otr']) & (df_plot['OTR_Updated_Num'] <= req['max_otr']) &
+            (df_plot['WVTR_Updated_Num'] >= req['min_wvtr']) & (df_plot['WVTR_Updated_Num'] <= req['max_wvtr'])
+        ]
+        
+        sustainable_matches = matches[matches['Material_Class'] == 'sustainable']
 
-    if not matches.empty:
-        st.success(f"Found {len(matches)} matches!")
-        for i, row in matches.iterrows():
-            with st.expander(f"✅ {row['Base Material']}"):
-                st.write(f"**Type:** {row['Type']}")
-                st.write(f"**OTR:** {row['OTR_Updated_Num']:.2f}")
-                st.write(f"**WVTR:** {row['WVTR_Updated_Num']:.2f}")
-    else:
-        st.warning("No sustainable matches found for these exact constraints.")
-
-# --- FOOTER ---
-st.markdown("---")
-st.info("Algorithm Metrics: DBSCAN Silhouette Score: 0.900 | Davies-Bouldin Index: 0.388")
+        if not sustainable_matches.empty:
+            st.success(f"Found {len(sustainable_matches)} Sustainable Materials")
+            st.dataframe(sustainable_matches[['Base Material', 'Type']], hide_index=True)
+        elif not matches.empty:
+            st.info("No sustainable matches, but conventional materials found.")
+            st.dataframe(matches[['Base Material', 'Type']].head(5), hide_index=True)
+        else:
+            st.warning("No exact matches found in the database.")
+            st.write("Consider checking **Cluster 0** for high-barrier options.")
+else:
+    st.error("Application could not load data. Check 'data/semi-processed_2.csv'.")
