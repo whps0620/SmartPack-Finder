@@ -66,42 +66,70 @@ food_reqs = {
 # --- APP LAYOUT ---
 df_raw = load_data()
 
-st.sidebar.header("Navigation & Settings")
+# --- SIDEBAR: REFINED INPUTS ---
+st.sidebar.header("User Requirements")
 if not df_raw.empty:
     df_plot = apply_clustering(df_raw)
     
-    selected_food = st.sidebar.selectbox("Select Target Food Category", list(food_reqs.keys()))
-    req = food_reqs[selected_food]
+    selected_food = st.sidebar.selectbox("1. Target Food Category", list(food_reqs.keys()))
 
-    # Sidebar PDF Downloads
-    st.sidebar.markdown("---")
-    st.sidebar.subheader("Research Files")
-    for pdf_file in ["Thesis_Final.pdf", "The concept poster.pdf"]:
-        if os.path.exists(pdf_file):
-            with open(pdf_file, "rb") as f:
-                st.sidebar.download_button(label=f"Download {pdf_file}", data=f, file_name=pdf_file)
+    # Storage impact on requirements
+    storage = st.sidebar.selectbox("2. Storage Condition", ["Ambient", "Refrigerated", "High Humidity"])
+    special_reqs = st.sidebar.multiselect("3. Special Requirements", ["High Transparency", "High Heat Resistance", "Recyclable Content"])
 
+    # Adjust requirements based on storage (Example logic for your thesis)
+    req = food_reqs[selected_food].copy()
+    if storage == "High Humidity":
+        req['max_wvtr'] = req['max_wvtr'] * 0.5  # Make WVTR requirement 50% stricter
+    elif storage == "Refrigerated":
+        req['max_otr'] = req['max_otr'] * 0.8   # Make OTR slightly stricter
+
+    
     # --- MAIN VISUALIZATION ---
     st.title("SmartPack Finder: Integrated Decision Tool")
     
     col1, col2 = st.columns([3, 1])
-
+    
+    # --- FILTERING & PLOTTING ---
     with col1:
         fig = go.Figure()
 
-        # 1. Add ALL Food Requirement Zones (Visible in legend)
-        for name, r in food_reqs.items():
-            is_selected = (name == selected_food)
+        # Draw the specific target zone
+        fig.add_shape(type="rect",
+            x0=req['min_wvtr'], x1=req['max_wvtr'], y0=req['min_otr'], y1=req['max_otr'],
+            line=dict(color="RoyalBlue", width=3), fillcolor="LightSkyBlue", opacity=0.5
+        )
+
+        # Filter Sustainable Matches
+        matches = df_plot[
+            (df_plot['OTR_Updated_Num'] >= req['min_otr']) & (df_plot['OTR_Updated_Num'] <= req['max_otr']) &
+            (df_plot['WVTR_Updated_Num'] >= req['min_wvtr']) & (df_plot['WVTR_Updated_Num'] <= req['max_wvtr']) &
+            (df_plot['Material_Class'] == 'sustainable')
+        ]
+
+        # Plot all materials (background)
+        fig.add_trace(go.Scatter(
+            x=df_plot['WVTR_Updated_Num'], y=df_plot['OTR_Updated_Num'],
+            mode='markers', name='Other Materials',
+            marker=dict(color='lightgray', size=5),
+            hoverinfo='skip'
+        ))
+
+        # Plot specifically the SUSTAINABLE matches with labels
+        if not matches.empty:
             fig.add_trace(go.Scatter(
-                x=[r['min_wvtr'], r['max_wvtr'], r['max_wvtr'], r['min_wvtr'], r['min_wvtr']],
-                y=[r['min_otr'], r['min_otr'], r['max_otr'], r['max_otr'], r['min_otr']],
-                fill="toself",
-                name=name,
-                line=dict(color=r['color'], width=2 if is_selected else 1),
-                opacity=0.4 if is_selected else 0.1,
-                legendgroup="Requirements"
+                x=matches['WVTR_Updated_Num'], y=matches['OTR_Updated_Num'],
+                mode='markers+text', 
+                name='Recommended Sustainable',
+                text=matches['Base Material'],
+                textposition="top center",
+                marker=dict(color='green', size=12, symbol='star'),
             ))
 
+        fig.update_xaxes(type="log", title="WVTR (g/m²·day)")
+        fig.update_yaxes(type="log", title="OTR (cm³/m²·day)")
+        st.plotly_chart(fig, use_container_width=True)
+        
         # 2. Add Material Clusters
         for cluster in df_plot['Cluster'].unique():
             c_data = df_plot[df_plot['Cluster'] == cluster]
