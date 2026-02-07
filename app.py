@@ -95,7 +95,7 @@ if m_df is not None and not m_df.empty:
 
     fig.update_xaxes(type="log", title=f"WVTR ({WVTR_UNIT})", exponentformat="power")
     fig.update_yaxes(type="log", title=f"OTR ({OTR_UNIT})", exponentformat="power")
-    fig.update_layout(template="plotly_white", title=f"<b>Permeability Mapping: {selected_name}</b>")
+    fig.update_layout(template="plotly_white", title=f"<b>Permeability Mapping (25℃, RH50%): {selected_name}</b>")
     st.plotly_chart(fig, use_container_width=True)
 
     # --- Abbreviations Note (Under Plot) ---
