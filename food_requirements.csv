@@ -1,9 +1,9 @@
 Food_Category,Min_OTR,Max_OTR,Min_WVTR,Max_WVTR,Description
-"Fruit, vegetable, and salads",10000.0,1000000000.0,100.0,10000.0,"High Respiration"
-"Bakery",10.0,1000.0,5.0,100.0,"Moderate Barrier"
-"Cheese",1.0,100.0,1.0,100.0,"Lipid Oxidation Prevention"
-"Meat",0.1,50.0,0.1,20.0,"High O2 Barrier"
-"Peanuts",0.1,10.0,0.1,10.0,"Crunchiness & Oil Stability"
-"Seafoods, meat",0.1,50.0,0.1,10.0,"Microbial Control"
-"Coffee",0.01,1.0,0.01,1.0,"Aroma Preservation"
-"Baby food",0.01,1.0,0.01,1.0,"Nutrient Protection"
+"Fruits, Vegetables, Salads",10000.0,200000.0,10.0,3000.0,High respiration; requires gas exchange to stay fresh.
+Bakery products,30.0,4000.0,600.0,3000.0,High moisture transmission needed to avoid sogginess.
+Cheese,7.0,10.0,300.0,600.0,Narrow moisture range to maintain texture.
+"Meat, MAP",2.0,20.0,10.0,50.0,Modified atmosphere packaging for processed meats.
+"Fresh meat, MAP",20.0,40.0,2.0,4.0,"Low moisture loss, controlled oxygen for color preservation."
+Peanuts,0.7,10.0,2.0,8.0,Low O2 to prevent rancidity; low WVTR for crunchiness.
+Instant coffee,0.2,2.0,0.7,3.0,High barrier required for aroma and clumping prevention.
+Baby food, 0.1, 1.0, 0.5, 2.0, Nutritional Integrity 
