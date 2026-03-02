@@ -8,6 +8,7 @@ from sklearn.preprocessing import StandardScaler
 # Page Config
 st.set_page_config(page_title="Sustainable Packaging Selector", layout="wide")
 
+@st.cache_data  # This makes the app snappy on mobile!
 # --- DATA LOADING FUNCTION ---
 def load_and_clean_data():
     try:
@@ -96,7 +97,20 @@ if m_df is not None and not m_df.empty:
     fig.update_xaxes(type="log", title=f"WVTR ({WVTR_UNIT})", exponentformat="power")
     fig.update_yaxes(type="log", title=f"OTR ({OTR_UNIT})", exponentformat="power")
     fig.update_layout(template="plotly_white", title=f"<b>Permeability Mapping (25℃, RH50%): {selected_name}</b>")
-    st.plotly_chart(fig, use_container_width=True)
+    fig.update_layout(
+        template="plotly_white", 
+        title=f"<b>Permeability Mapping: {selected_name}</b>",
+        # This keeps the legend readable on both Laptop and Mobile
+        legend=dict(
+            orientation="h", 
+            yanchor="bottom", 
+            y=-0.3, 
+            xanchor="center", 
+            x=0.5
+        ),
+        margin=dict(l=10, r=10, t=50, b=10) # Less "white space" on mobile
+    )
+    st.plotly_chart(fig, use_container_width=True) # Forces it to fit phone width
 
     # --- Abbreviations Note (Under Plot) ---
     with st.expander("ℹ️ Abbreviations & Material Definitions"):
