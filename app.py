@@ -40,7 +40,7 @@ m_df, f_df = load_and_clean_data()
 st.title("🌱 Sustainable Packaging Materials Recommendation Tool")
 st.markdown("""
 ### About the Project
-This tool is based on the research **'Mapping Gas Permeability of Sustainable Packaging Materials to Link Food Barrier Needs by Clustering Algorithms'**. 
+This tool is based on the research **[Mapping gas permeability of sustainable packaging materials to link food barrier needs by clustering algorithms.](https://www.nature.com/articles/s41538-026-00741-7)**. 
 The study addresses environmental concerns of conventional plastics by identifying sustainable alternatives that meet specific food preservation requirements. 
 By classifying materials based on **Oxygen Transmission Rate (OTR)** and **Water Vapor Transmission Rate (WVTR)**, this framework helps match the right sustainable material to the unique barrier needs of different food categories.
 """)
@@ -108,7 +108,9 @@ if m_df is not None and not m_df.empty:
             xanchor="center", 
             x=0.5
         ),
-        margin=dict(l=10, r=10, t=50, b=10) # Less "white space" on mobile
+        height = 750
+    
+        margin=dict(l=50, r=60, t=80, b=150) # Less "white space" on mobile
     )
     st.plotly_chart(fig, use_container_width=True) # Forces it to fit phone width
 
@@ -118,7 +120,7 @@ if m_df is not None and not m_df.empty:
         * **Sec (Secondary Materials):** Additional components like montmorillonite, clay, or silica used to enhance material properties.
         * **Type:** How secondary materials interact with or modify the base material (e.g., nanocomposites, coatings, blends).
         * **Rep (Representative Materials):** The most common base material found in that cluster.
-        * **Dataset Note:** The current dataset contains approximately 295 entries derived from 49 scientific studies (2000-2016). Given the current small scope, "Representative Materials" are illustrative and not yet fully representable[cite: 31, 259].
+        * **Dataset Note:** The current dataset contains approximately 295 entries derived from 49 scientific studies (2000-2016). Given the current small scope, "Representative Materials" are illustrative and not yet fully representable.
         """)
 
     # --- Results Table ---
@@ -155,6 +157,8 @@ if m_df is not None and not m_df.empty:
 
     **Material Permeability Dataset:**
     * Lentschat, M., Buche, P., Dibie-Barthélemy, J., Roche, M., et al. (2021). Food packaging permeability and composition dataset dedicated to text-mining. *Data in Brief, 36(4), 107135.*. [View Article](https://doi.org/10.1016/j.dib.2023.109312)
+    
+                
     """)
 
 else:
