@@ -108,7 +108,7 @@ if m_df is not None and not m_df.empty:
             xanchor="center", 
             x=0.5
         ),
-        height = 750
+        height = 750,
     
         margin=dict(l=50, r=60, t=80, b=150) # Less "white space" on mobile
     )
